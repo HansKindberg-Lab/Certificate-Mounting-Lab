@@ -2,6 +2,8 @@
 
 Application for laborating with certificate-mounting in Linux containers.
 
+You need to run the application with the **Docker** launch-profile when laborating with different mounts.
+
 Try different mounts by uncommenting lines in the [project-file](/Source/Application/Application.csproj#L6).
 
 ## [Certificates](/Certificates)
