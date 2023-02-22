@@ -1,0 +1,17 @@
+{
+	"profiles": {
+		"Kestrel": {
+			"applicationUrl": "https://localhost:5000",
+			"commandName": "Project",
+			"dotnetRunMessages": true,
+			"launchBrowser": true
+		},
+		"Docker": {
+			"commandName": "Docker",
+			"launchBrowser": true,
+			"launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+			"publishAllPorts": true,
+			"useSSL": true
+		}
+	}
+}

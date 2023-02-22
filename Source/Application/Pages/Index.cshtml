@@ -1,0 +1,74 @@
+﻿@page
+@model IndexModel
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Certificates</title>
+		<style>
+			button { margin-top: 1em; }
+
+			input { width: 90%; }
+
+			label {
+				display: block;
+				font-weight: bold;
+			}
+
+			p.exception { color: red; }
+
+			p.warning { color: orange; }
+		</style>
+	</head>
+	<body>
+		<h1>Certificates</h1>
+		<p>You can use wildcards, "*", in the subject filter. A wildcard only as filter will find all certificates.</p>
+		<form>
+			<div>
+				<label asp-for="SubjectFilter">Subject filter</label>
+				<input asp-for="SubjectFilter" />
+			</div>
+			<div>
+				<button>Find</button>
+			</div>
+		</form>
+		<p>
+			<a href="/">Reload</a>
+		</p>
+		@if(Model.Exception == null)
+		{
+			if(Request.Query[nameof(Model.SubjectFilter)].Any())
+			{
+				if(Model.CertificateStores.Any())
+				{
+					<ul>
+						@foreach(var certificateStore in Model.CertificateStores)
+						{
+							<li>
+								<h2>@certificateStore.Key</h2>
+								@if(certificateStore.Value.Any())
+								{
+									<ul>
+										@foreach(var certificate in certificateStore.Value)
+										{
+											<li>@certificate</li>
+										}
+									</ul>
+								}
+							</li>
+						}
+					</ul>
+				}
+				else
+				{
+					<p class="warning">No match</p>
+				}
+			}
+		}
+		else
+		{
+			<p class="exception">@Model.Exception</p>
+		}
+	</body>
+</html>
